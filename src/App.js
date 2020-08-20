@@ -30,16 +30,22 @@ function App() {
   }
 
   async function handleRemoveRepository(id) {
-    // TODO 
+    const repositoryIndex= repositories.findIndex(repository => repository.id === id)
+    const repository = [...repositories]
+
+    repository.splice(repositoryIndex, 1)
+
+    setRepositories(repository)
   }
 
   return (
     <div>
       <ul data-testid="repository-list">
-      {repositories.map(repository => <li key={repository.id}>{repository.title}
+      {repositories.map(repository => 
+          <li key={repository.id}>
+            {repository.title}
       
-        
-          <button onClick={() => handleRemoveRepository(1)}>
+          <button onClick={() => handleRemoveRepository(repository.id)}>
             Remover
           </button>
           </li>)}
